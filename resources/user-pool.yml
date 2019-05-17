@@ -1,0 +1,35 @@
+Resources:
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: ${opt:stage, self:provider.stage}-${self:service}-user-pool
+      AutoVerifiedAttributes:
+        - email
+      Schema:
+        - Name: name
+          AttributeDataType: String
+          Mutable: true
+          Required: false
+        - Name: email
+          AttributeDataType: String
+          Mutable: false
+          Required: true
+
+  UserPoolClient:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+      ClientName: ${opt:stage, self:provider.stage}-${self:service}-user-pool-client
+      GenerateSecret: false
+      UserPoolId:
+        Ref: UserPool
+Outputs:
+  UserPoolId:
+    Value:
+      Ref: UserPool
+    Export:
+      Name: "UserPool::Id"
+  UserPoolClientId:
+    Value:
+      Ref: UserPoolClient
+    Export:
+      Name: "UserPoolClient::Id"

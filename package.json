@@ -1,0 +1,8 @@
+{
+  "name": "cognito-user-example",
+  "version": "1.0.0",
+  "author": "joelmacey",
+  "dependencies": {
+    "serverless": "^1.39.1"
+  },
+}
