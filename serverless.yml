@@ -7,11 +7,12 @@ provider:
   stage: dev
 
 # you can add statements to the Lambda function's IAM Role here
-  # iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+  iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+       - "dynamodb:PutItem"
+     Resource:
+      "Fn::GetAtt": [ itemTable, Arn ]
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
@@ -33,6 +34,18 @@ package:
   exclude:
 #    - exclude-me.js
    - node_modules/**
+functions:
+  create:
+    handler: functions/create.main
+    environment:
+      TABLE: dev-cognito-user-example-item-table
+    events:
+      - http:
+          method: post
+          path: items
+          cors: true
+          authorizer:
+            arn: #arn:aws:cognito-idp:ap-southeast-2:123456789012:userpool/ap-southeast-2_123456789 # Your Cognito User Pool ARN
 
 
 #    Define function environment variables here
@@ -42,7 +55,9 @@ package:
 # you can add CloudFormation resource templates here
 resources:
   - ${file(resources/user-pool.yml)}
-  
+  - ${file(resources/item-table.yml)}
+
+
 #  Resources:
 #    NewResource:
 #      Type: AWS::S3::Bucket

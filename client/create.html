@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cognito User Example Create Item</title>
+  <script src="js/vendor/modernizr.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="js/config.js"></script>
+  <script src="js/vendor/jquery-3.1.0.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+
+
+</head>
+<body class="page-home">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">Cognito User Example</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="register.html">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signin.html">Signin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="signOut" href="#">Signout</a>
+        </li>
+
+
+
+      </ul>
+
+    </div>
+    </nav>
+
+      <div id="main">
+        <button id="request" class="btn btn-primary">Create New Entry</button>
+              
+
+      <div id="noCognitoMessage" class="configMessage" style="display: none;">
+          <div class="backdrop"></div>
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">No Cognito User Pool Configured</h3>
+              </div>
+              <div class="panel-body">
+                  <p>There is no user pool configured in <a href="/js/config.js">/js/config.js</a>. You'll configure this in Module 2 of the workshop.</p>
+              </div>
+          </div>
+      </div>
+
+
+      <div id="authTokenModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="authToken" style="display: none;">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Your Auth Token</h4>
+                  </div>
+                  <div class="modal-body">
+                      <textarea class="authToken"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+      <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+      <script src="https://js.arcgis.com/4.3/"></script>
+      <script src="js/cognito-auth.js"></script>
+      <script src="js/create.js"></script>
+
+
+</body>
+</html>
